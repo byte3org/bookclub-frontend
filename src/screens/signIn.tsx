@@ -11,7 +11,7 @@ export default function SignIn() {
     const [msg, setMsg] = React.useState('');
 
     const onClickSignup = () => {
-        // havigation to sign up
+        // navigation to sign up
     }
 
     const onClickLogin = (e: any) => {
