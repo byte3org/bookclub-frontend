@@ -1,6 +1,5 @@
 import React from "react";
 import { Button } from "native-base";
-import sizes from "native-base/lib/typescript/theme/base/sizes";
 
 type Props = {
     children: React.ReactNode
