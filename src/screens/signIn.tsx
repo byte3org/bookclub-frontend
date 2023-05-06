@@ -1,7 +1,9 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../authContext";
 
 export default function SignIn() {
+    const navigation = useNavigation();
     const auth = useAuth();
     const [username, setUsername] = React.useState('');
     const [password, setPassword] = React.useState('');
@@ -11,7 +13,7 @@ export default function SignIn() {
     const [msg, setMsg] = React.useState('');
 
     const onClickSignup = () => {
-        // navigation to sign up
+        navigation.navigate('signup');
     }
 
     const onClickLogin = (e: any) => {
