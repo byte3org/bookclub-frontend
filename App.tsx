@@ -5,7 +5,7 @@ import { AuthProvider } from "./src/authContext";
 
 export default function App() {
   return (
-    
+    <></>
   );
 }
 

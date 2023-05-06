@@ -14,11 +14,11 @@ export default function SignIn() {
     const [error, setError] = React.useState(false);
     const [msg, setMsg] = React.useState('');
 
-    const onClickSignup = () => {
+    const onClickSignUp = () => {
         navigation.navigate('signup');
     }
 
-    const onClickLogin = (e: any) => {
+    const onClickSignIn = (e: any) => {
         e.preventDefault();
         if (username == '' || password == '') {
             setError(true);
@@ -54,6 +54,6 @@ export default function SignIn() {
     }
 
     return (
-        
+        <></>
     )
 }
