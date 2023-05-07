@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
+import React, { createContext, useState, useEffect, useContext, ReactNode } from "react";
 import storage from './utils/storage';
 
 type AuthContextData = {
@@ -8,9 +8,13 @@ type AuthContextData = {
     signOut(): void;
 };
 
+interface Props {
+    children?: ReactNode
+}
+
 const AuthContext = React.createContext<AuthContextData>({} as AuthContextData);
 
-const AuthProvider: React.FC = ({ children }) => {
+const AuthProvider = ({ children }: Props) => {
     const [authToken, setAuthToken] = useState<string>();
 
     const [isLoaded, setLoaded] = useState(false);
