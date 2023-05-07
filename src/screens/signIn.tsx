@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../authContext";
 
-// import api
+import { api } from "../api/api";
 
 export default function SignIn() {
     const navigation = useNavigation();

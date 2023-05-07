@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigation, useRoute } from "@react-navigation/native";
 
+import { api } from "../api/api";
+
 export default function SignUp() {
     const navigation = useNavigation();
 
