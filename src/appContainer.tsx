@@ -2,7 +2,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { Center, Heading, NativeBaseProvider } from "native-base";
 
 import { AuthNavigation, AppNavigation } from './navigation';
-//import theme from './theme';
+import theme from './theme';
 import { useAuth } from './authContext';
 
 
