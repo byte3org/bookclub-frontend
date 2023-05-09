@@ -60,14 +60,14 @@ export default function SignUp() {
                     <VStack space={4}>
                         <Heading size="lg">
                             Sign Up
-                        </Heading> 
+                        </Heading>
                         <FormControl>
                             <FormControl.Label>Email</FormControl.Label>
-                            <Input variant="underlined" onChangeText={(text) => { setUsername(text); }} />
+                            <Input variant="underlined" onChangeText={(text) => { setEmail(text); }} />
                         </FormControl>
                         <FormControl>
                             <FormControl.Label>Username</FormControl.Label>
-                            <Input variant="underlined" onChangeText={(text) => { setPassword(text); }} />
+                            <Input variant="underlined" onChangeText={(text) => { setUsername(text); }} />
                         </FormControl>
                         <FormControl>
                             <FormControl.Label>Password</FormControl.Label>
