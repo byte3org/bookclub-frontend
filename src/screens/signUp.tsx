@@ -23,6 +23,7 @@ export default function SignUp() {
 
     const onClickSignUp = () => {
         if (isAgreed) {
+            navigation.navigate('userinfo');
             api.post(
                 "user/signup",
                 {
@@ -36,7 +37,7 @@ export default function SignUp() {
                     setSuccess(true);
                     setMsg('User created');
                     //let sleep = () => { new Promise(resolve => setTimeout(resolve, 10)); }
-                    navigation.navigate('signin');
+                    navigation.navigate('userinfo');
                 } else {
                     console.log('error occured when registering new user');
                     setMsg("Failed to register new accounr");
@@ -73,7 +74,7 @@ export default function SignUp() {
                             <FormControl.Label>Password</FormControl.Label>
                             <Input variant="underlined" type="password" onChangeText={(text) => { setPassword(text); }} />
                         </FormControl>
-                        <Checkbox onChange={(value) => { setAgreed(value); }} size="sm" value="one" my={2}>
+                        <Checkbox onChange={() => { setAgreed(true ? isAgreed : false); }} size="sm" value="one" my={2}>
                             I agree to the Terms of Services and Privacy Policy.
                         </Checkbox>
                         <Button rounded={'md'} mt="2" colorScheme="green" onPress={onClickSignUp}>

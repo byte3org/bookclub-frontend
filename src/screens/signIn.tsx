@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useAuth } from "../authContext";
-import { Box, Button, Center, Text, Heading, HStack, Input, KeyboardAvoidingView, VStack, FormControl } from "native-base";
+import { Image, Box, Button, Center, Text, Heading, HStack, Input, KeyboardAvoidingView, VStack, FormControl } from "native-base";
 
 import { api } from "../api/api";
 
@@ -59,6 +59,7 @@ export default function SignIn() {
             <Box safeArea p="10" py="8" w="100%">
                 <KeyboardAvoidingView behavior="position">
                     <VStack space={4}>
+                        <Image size={150} borderRadius={100} src={"../../assets/icon.png"} alt="BookClub Logo" />
                         <Heading size="lg">
                             Sign In
                         </Heading>
