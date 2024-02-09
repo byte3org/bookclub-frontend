@@ -1,0 +1,25 @@
+<resources>
+
+    <string name="app_name">Bookclub</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="welcome">"Welcome !"</string>
+    <string name="invalid_email">Invalid email address</string>
+    <string name="invalid_name">Invalid name, must be below 10</string>
+    <string name="invalid_contact">Invalid contact number</string>
+    <string name="invalid_username">Not a valid username</string>
+    <string name="invalid_password">Password must be >5 characters</string>
+    <string name="login_failed">"Login failed"</string>
+    <string name="enter_your_contact">enter your contact</string>
+    <string name="enter_your_password">enter your password</string>
+    <string name="login">Login</string>
+    <string name="enter_your_first_name">enter your first name</string>
+    <string name="create_profile">Create Profile</string>
+    <string name="enter_your_email">enter your email</string>
+    <string name="enter_your_username">enter your username</string>
+    <string name="second_name">second name</string>
+    <string name="frist_name">frist name</string>
+</resources>
