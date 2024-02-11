@@ -5,10 +5,16 @@ import androidx.lifecycle.ViewModelProvider
 import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
-import androidx.lifecycle.ViewModelProvider
+import android.widget.EditText
+import android.widget.Toast
+import androidx.annotation.StringRes
 import com.example.bookclub.R
+import com.example.bookclub.data.Result
 import com.example.bookclub.databinding.ActivityRegisterCreaterProfileBinding
+import com.example.bookclub.ui.login.LoggedInUserView
 import com.example.bookclub.ui.login.afterTextChanged
 
 class RegisterCreateProfileActivity : AppCompatActivity() {
@@ -67,10 +73,10 @@ class RegisterCreateProfileActivity : AppCompatActivity() {
             val registerResult = it ?: return@Observer
 
             if (registerResult.error != null) {
-                showRegistratoFailed(loginResult.error)
+                showRegisterFailed(registerResult.error)
             }
-            if (loginResult.success != null) {
-                updateUiWithUser(loginResult.success)
+            if (registerResult.success != null) {
+                updateUiWithUser(registerResult.success)
             }
             setResult(Activity.RESULT_OK)
 
@@ -78,20 +84,54 @@ class RegisterCreateProfileActivity : AppCompatActivity() {
             finish()
         })
 
-        contact?.afterTextChanged {
-            if (password != null) {
-                loginViewModel.loginDataChanged(
-                    contact.text.toString(),
-                    password.text.toString()
-                )
-            }
+        firstName.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                username.text.toString(),
+                firstName.text.toString(),
+                secondName.text.toString(),
+                email.text.toString(),
+                password.text.toString()
+            )
         }
 
-        password?.apply {
+        secondName.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                username.text.toString(),
+                firstName.text.toString(),
+                secondName.text.toString(),
+                email.text.toString(),
+                password.text.toString()
+            )
+        }
+
+        username.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                username.text.toString(),
+                firstName.text.toString(),
+                secondName.text.toString(),
+                email.text.toString(),
+                password.text.toString()
+            )
+        }
+
+        email.afterTextChanged {
+            registerViewModel.registerDataChanged(
+                username.text.toString(),
+                firstName.text.toString(),
+                secondName.text.toString(),
+                email.text.toString(),
+                password.text.toString()
+            )
+        }
+
+        password.apply {
             afterTextChanged {
                 if (contact != null) {
-                    loginViewModel.loginDataChanged(
-                        contact.text.toString(),
+                    registerViewModel.registerDataChanged(
+                        username.text.toString(),
+                        firstName.text.toString(),
+                        secondName.text.toString(),
+                        email.text.toString(),
                         password.text.toString()
                     )
                 }
@@ -101,8 +141,11 @@ class RegisterCreateProfileActivity : AppCompatActivity() {
                 when (actionId) {
                     EditorInfo.IME_ACTION_DONE ->
                         if (contact != null) {
-                            loginViewModel.login(
-                                contact.text.toString(),
+                            registerViewModel.registerDataChanged(
+                                username.text.toString(),
+                                firstName.text.toString(),
+                                secondName.text.toString(),
+                                email.text.toString(),
                                 password.text.toString()
                             )
                         }
@@ -110,13 +153,44 @@ class RegisterCreateProfileActivity : AppCompatActivity() {
                 false
             }
 
-            if (login != null) {
-                login.setOnClickListener {
+            if (createProfile != null) {
+                createProfile.setOnClickListener {
                     if (contact != null) {
-                        loginViewModel.login(contact.text.toString(), password.text.toString())
+                        val result = registerViewModel.registerAccount(contact, username.text.toString(), email.text.toString(), firstName.text.toString(), secondName.text.toString(), password.text.toString())
+                        if (result is Result.Success) {
+                            // goto home
+                        } else {
+                            // go
+                        }
                     }
                 }
             }
         }
     }
+    private fun updateUiWithUser(model: LoggedInUserView) {
+        val welcome = getString(R.string.welcome)
+        val displayName = model.displayName
+        // TODO : initiate successful logged in experience
+        Toast.makeText(
+            applicationContext,
+            "$welcome $displayName",
+            Toast.LENGTH_LONG
+        ).show()
+    }
+
+    private fun showRegisterFailed(@StringRes errorString: Int) {
+        Toast.makeText(applicationContext, errorString, Toast.LENGTH_SHORT).show()
+    }
+}
+
+fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object : TextWatcher {
+        override fun afterTextChanged(editable: Editable?) {
+            afterTextChanged.invoke(editable.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
+    })
 }

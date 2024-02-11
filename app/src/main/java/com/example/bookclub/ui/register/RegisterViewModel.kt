@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.bookclub.R
 import com.example.bookclub.data.RegisterRepository
+import com.example.bookclub.data.Result
 import com.example.bookclub.ui.login.LoginFormState
 import com.example.bookclub.ui.login.LoginResult
 
@@ -18,6 +19,15 @@ class RegisterViewModel(private val registerRepository: RegisterRepository) : Vi
 
     fun registerContactChanged(contact: String): Boolean {
         return isContactNumberValid(contact)
+    }
+
+    fun registerAccount(contact: String, username: String, email: String, firstName: String, secondName: String, password: String): com.example.bookclub.data.Result<Boolean> {
+        val result = registerRepository.register(contact, password)
+
+        if (result is Result.Success) {
+            return registerRepository.createProfile()
+        }
+        return result
     }
 
     private fun isContactNumberValid(contactNumber: String): Boolean {
